@@ -186,6 +186,27 @@
             margin-bottom: 15px;
         }
         
+        .feature-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .feature-card p {
+            margin-bottom: 15px;
+        }
+        
+        .feature-link {
+            color: var(--primary);
+            font-weight: 500;
+            margin-top: auto;
+            display: inline-block;
+        }
+        
+        .feature-link:hover {
+            text-decoration: underline;
+        }
+        
         /* Pricing Section */
         .pricing {
             padding: 80px 0;
@@ -203,6 +224,9 @@
             padding: 40px 30px;
             text-align: center;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .pricing-card.popular {
@@ -249,6 +273,7 @@
         .pricing-features {
             margin: 30px 0;
             text-align: left;
+            flex-grow: 1;
         }
         
         .pricing-features li {
@@ -474,7 +499,9 @@
                 <h1>Modern Plot Management for Real Estate Professionals</h1>
                 <p>Streamline your real estate plot management with our all-in-one platform for site owners, GPA holders, and agents.</p>
                 <div class="hero-btns">
-                    <a href="/register" class="btn btn-primary">Get Started</a>
+                    <div class="action-btn-container" style="margin-top: auto;">
+                        <a href="/register" class="btn btn-primary">Get Started</a>
+                    </div>
                     <a href="#demo" class="btn btn-outline">Request Demo</a>
                 </div>
             </div>
@@ -490,31 +517,37 @@
                     <div class="feature-icon">📊</div>
                     <h3>Multi-tenant Management</h3>
                     <p>Manage multiple real estate projects with separate dashboards for each site layout.</p>
+                    <a href="#" class="feature-link">Learn More →</a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
                     <h3>Role-based Access</h3>
                     <p>Define precise permissions for site owners, GPA holders, and agents with secure authentication.</p>
+                    <a href="#" class="feature-link">Learn More →</a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
                     <h3>Mobile Access</h3>
                     <p>Access your plot management system on-the-go with our responsive web and mobile applications.</p>
+                    <a href="#" class="feature-link">Learn More →</a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📄</div>
                     <h3>Document Management</h3>
                     <p>Securely store and manage all your land deeds, agreements, and legal documents in one place.</p>
+                    <a href="#" class="feature-link">Learn More →</a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📈</div>
                     <h3>Sales Analytics</h3>
                     <p>Track performance with real-time analytics and reporting for better decision making.</p>
+                    <a href="#" class="feature-link">Learn More →</a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💰</div>
                     <h3>Payment Processing</h3>
                     <p>Handle installments, track payments, and generate invoices automatically.</p>
+                    <a href="#" class="feature-link">Learn More →</a>
                 </div>
             </div>
         </div>
@@ -537,7 +570,9 @@
                         <li>Email support</li>
                         <li>7-day trial period</li>
                     </ul>
-                    <a href="/register" class="btn btn-outline">Start Free Trial</a>
+                    <div class="action-btn-container" style="margin-top: auto;">
+                        <a href="/register" class="btn btn-outline">Start Free Trial</a>
+                    </div>
                 </div>
                 <div class="pricing-card">
                     <h3>Starter</h3>
@@ -550,7 +585,9 @@
                         <li>Email support</li>
                         <li>Mobile app access</li>
                     </ul>
-                    <a href="/register" class="btn btn-outline">Get Started</a>
+                    <div class="action-btn-container" style="margin-top: auto;">
+                        <a href="/register" class="btn btn-outline">Get Started</a>
+                    </div>
                 </div>
                 <div class="pricing-card popular">
                     <div class="popular-tag">Most Popular</div>
@@ -584,7 +621,9 @@
                         <li>API access</li>
                         <li>Custom integrations</li>
                     </ul>
-                    <a href="/contact" class="btn btn-outline">Contact Sales</a>
+                    <div class="action-btn-container" style="margin-top: auto;">
+                        <a href="/contact" class="btn btn-outline">Contact Sales</a>
+                    </div>
                 </div>
             </div>
         </div>
