@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlotPro - Register</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --gray-light: #f3f4f6;
+            --gray-dark: #4b5563;
+            --text: #1f2937;
+            --white: #ffffff;
+            --error: #ef4444;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--gray-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background-color: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-disabled {
+            background-color: #cbd5e1;
+            color: #64748b;
+            cursor: not-allowed;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Registration Form */
+        .registration-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+        }
+        
+        .registration-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .card-header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .card-header p {
+            color: var(--gray-dark);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .form-group .input-hint {
+            font-size: 14px;
+            color: var(--gray-dark);
+            margin-top: 5px;
+        }
+        
+        .form-group .error-message {
+            color: var(--error);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .input-with-button {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .input-with-button input {
+            flex: 1;
+        }
+        
+        .input-with-button button {
+            padding: 12px 20px;
+        }
+        
+        .otp-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .otp-input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        
+        .otp-input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .form-footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .form-footer .btn {
+            width: 100%;
+        }
+        
+        .login-link {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        /* Step indicator */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        
+        .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .step.completed {
+            background-color: var(--success);
+            color: var(--white);
+        }
+        
+        .steps-content {
+            display: none;
+        }
+        
+        .steps-content.active {
+            display: block;
+        }
+        
+        /* Success message */
+        .success-message {
+            text-align: center;
+            display: none;
+        }
+        
+        .success-message .icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--success);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 20px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 20px 0;
+            background-color: var(--text);
+            color: var(--white);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .registration-card {
+                padding: 30px 20px;
+            }
+            
+            .otp-container {
+                gap: 5px;
+            }
+            
+            .otp-input {
+                width: 40px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">PlotPro</a>
+                <div>
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Registration Section -->
+    <section class="registration-section">
+        <div class="container">
+            <div class="registration-card">
+                <div class="card-header">
+                    <h1>Create Your Account</h1>
+                    <p>Join thousands of real estate professionals</p>
+                </div>
+                
+                <!-- Steps indicator -->
+                <div class="steps">
+                    <div class="step active" id="step1-indicator">1</div>
+                    <div class="step" id="step2-indicator">2</div>
+                    <div class="step" id="step3-indicator">3</div>
+                </div>
+                
+                <!-- Step 1: Basic Info -->
+                <div class="steps-content active" id="step1">
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" required>
+                        <div class="error-message" id="name-error">Please enter your full name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                        <div class="error-message" id="email-error">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Mobile Number</label>
+                        <div class="input-with-button">
+                            <input type="tel" id="phone" placeholder="10-digit mobile number" maxlength="10" required>
+                            <button class="btn btn-outline" id="send-otp-btn">Send OTP</button>
+                        </div>
+                        <div class="input-hint">We'll send a one-time password to verify your number</div>
+                        <div class="error-message" id="phone-error">Please enter a valid 10-digit mobile number</div>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <button class="btn btn-primary" id="step1-next">Continue</button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: OTP Verification -->
+                <div class="steps-content" id="step2">
+                    <div class="form-group">
+                        <label>Enter OTP sent to <span id="display-phone"></span></label>
+                        <div class="otp-container">
+                            <input type="text" class="otp-input" maxlength="1" data-index="1">
+                            <input type="text" class="otp-input" maxlength="1" data-index="2">
+                            <input type="text" class="otp-input" maxlength="1" data-index="3">
+                            <input type="text" class="otp-input" maxlength="1" data-index="4">
+                            <input type="text" class="otp-input" maxlength="1" data-index="5">
+                            <input type="text" class="otp-input" maxlength="1" data-index="6">
+                        </div>
+                        <div class="input-hint">
+                            Didn't receive the OTP? <a href="#" id="resend-otp">Resend OTP</a>
+                            <span id="resend-timer" style="display: none;"></span>
+                        </div>
+                        <div class="error-message" id="otp-error">Please enter a valid OTP</div>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <button class="btn btn-primary" id="verify-otp-btn">Verify OTP</button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Account Setup -->
+                <div class="steps-content" id="step3">
+                    <div class="form-group">
+                        <label for="company-name">Company/Organization Name</label>
+                        <input type="text" id="company-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="role">Your Role</label>
+                        <select id="role" required style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px;">
+                            <option value="">Select your role</option>
+                            <option value="site_owner">Site Layout Owner</option>
+                            <option value="gpa_holder">GPA Holder</option>
+                            <option value="agent">Agent</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Create Password</label>
+                        <input type="password" id="password" required>
+                        <div class="input-hint">Must be at least 8 characters with letters, numbers & symbols</div>
+                        <div class="error-message" id="password-error">Password must be at least 8 characters</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" required>
+                        <div class="error-message" id="confirm-password-error">Passwords do not match</div>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <button class="btn btn-primary" id="complete-registration">Complete Registration</button>
+                    </div>
+                </div>
+                
+                <!-- Success Message -->
+                <div class="success-message" id="success-message">
+                    <div class="icon">✓</div>
+                    <h2>Registration Successful!</h2>
+                    <p>Your account has been created successfully.</p>
+                    <div style="margin-top: 30px;">
+                        <a href="login.html" class="btn btn-primary">Login to Your Account</a>
+                    </div>
+                </div>
+                
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Login here</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PlotPro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const step3 = document.getElementById('step3');
+            const step1Indicator = document.getElementById('step1-indicator');
+            const step2Indicator = document.getElementById('step2-indicator');
+            const step3Indicator = document.getElementById('step3-indicator');
+            const step1Next = document.getElementById('step1-next');
+            const sendOtpBtn = document.getElementById('send-otp-btn');
+            const verifyOtpBtn = document.getElementById('verify-otp-btn');
+            const completeRegistration = document.getElementById('complete-registration');
+            const successMessage = document.getElementById('success-message');
+            const displayPhone = document.getElementById('display-phone');
+            const resendOtp = document.getElementById('resend-otp');
+            const resendTimer = document.getElementById('resend-timer');
+            
+            // Form inputs
+            const fullNameInput = document.getElementById('full-name');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            
+            // Error messages
+            const nameError = document.getElementById('name-error');
+            const emailError = document.getElementById('email-error');
+            const phoneError = document.getElementById('phone-error');
+            const otpError = document.getElementById('otp-error');
+            const passwordError = document.getElementById('password-error');
+            const confirmPasswordError = document.getElementById('confirm-password-error');
+            
+            // OTP inputs
+            const otpInputs = document.querySelectorAll('.otp-input');
+            
+            // Validation functions
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            function isValidPhone(phone) {
+                return /^[6-9]\d{9}$/.test(phone); // Indian mobile number validation
+            }
+            
+            function isValidPassword(password) {
+                return password.length >= 8;
+            }
+            
+            // Step 1 validation
+            step1Next.addEventListener('click', function() {
+                let isValid = true;
+                
+                // Validate name
+                if (!fullNameInput.value.trim()) {
+                    nameError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    nameError.style.display = 'none';
+                }
+                
+                // Validate email
+                if (!isValidEmail(emailInput.value)) {
+                    emailError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    emailError.style.display = 'none';
+                }
+                
+                // Validate phone
+                if (!isValidPhone(phoneInput.value)) {
+                    phoneError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    phoneError.style.display = 'none';
+                }
+                
+                if (isValid) {
+                    // Move to step 2
+                    step1.classList.remove('active');
+                    step2.classList.add('active');
+                    step1Indicator.classList.remove('active');
+                    step1Indicator.classList.add('completed');
+                    step2Indicator.classList.add('active');
+                    
+                    // Display phone number
+                    displayPhone.textContent = '+91 ' + phoneInput.value;
+                    
+                    // Focus on first OTP input
+                    otpInputs[0].focus();
+                }
+            });
+            
+            // Send OTP button
+            sendOtpBtn.addEventListener('click', function() {
+                if (isValidPhone(phoneInput.value)) {
+                    phoneError.style.display = 'none';
+                    
+                    // Simulate OTP sending
+                    sendOtpBtn.textContent = 'Sending...';
+                    sendOtpBtn.disabled = true;
+                    sendOtpBtn.classList.add('btn-disabled');
+                    
+                    setTimeout(function() {
+                        sendOtpBtn.textContent = 'OTP Sent';
+                        
+                        // Start resend timer
+                        startResendTimer();
+                        
+                        // For demo purposes, we'll set a fake OTP
+                        window.sentOtp = '123456';
+                        
+                        // Alert for demo purposes
+                        alert('For demo purposes, the OTP is: 123456');
+                    }, 2000);
+                } else {
+                    phoneError.style.display = 'block';
+                }
+            });
+            
+            // OTP input handling
+            otpInputs.forEach(function(input, index) {
+                input.addEventListener('input', function() {
+                    if (input.value.length === 1) {
+                        if (index < otpInputs.length - 1) {
+                            otpInputs[index + 1].focus();
+                        }
+                    }
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && input.value === '' && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                });
+            });
+            
+            // Verify OTP button
+            verifyOtpBtn.addEventListener('click', function() {
+                let enteredOtp = '';
+                otpInputs.forEach(function(input) {
+                    enteredOtp += input.value;
+                });
+                
+                if (enteredOtp.length === 6) {
+                    // For demo purposes, we check against the fake OTP
+                    if (enteredOtp === window.sentOtp) {
+                        otpError.style.display = 'none';
+                        
+                        // Move to step 3
+                        step2.classList.remove('active');
+                        step3.classList.add('active');
+                        step2Indicator.classList.remove('active');
+                        step2Indicator.classList.add('completed');
+                        step3Indicator.classList.add('active');
+                    } else {
+                        otpError.textContent = 'Invalid OTP. Please try again.';
+                        otpError.style.display = 'block';
+                    }
+                } else {
+                    otpError.textContent = 'Please enter all 6 digits.';
+                    otpError.style.display = 'block';
+                }
+            });
+            
+            // Resend OTP
+            function startResendTimer() {
+                let seconds = 30;
+                resendOtp.style.display = 'none';
+                resendTimer.style.display = 'inline';
+                
+                const countdown = setInterval(function() {
+                    seconds--;
+                    resendTimer.textContent = `Resend in ${seconds}s`;
+                    
+                    if (seconds <= 0) {
+                        clearInterval(countdown);
+                        resendTimer.style.display = 'none';
+                        resendOtp.style.display = 'inline';
+                        sendOtpBtn.textContent = 'Send OTP';
+                        sendOtpBtn.disabled = false;
+                        sendOtpBtn.classList.remove('btn-disabled');
+                    }
+                }, 1000);
+            }
+            
+            resendOtp.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Simulate OTP resending
+                resendOtp.textContent = 'Sending...';
+                
+                setTimeout(function() {
+                    // Start resend timer again
+                    startResendTimer();
+                    resendOtp.textContent = 'Resend OTP';
+                    
+                    // For demo purposes, set a new fake OTP
+                    window.sentOtp = '654321';
+                    
+                    // Alert for demo purposes
+                    alert('For demo purposes, the new OTP is: 654321');
+                }, 2000);
+            });
+            
+            // Complete registration
+            completeRegistration.addEventListener('click', function() {
+                let isValid = true;
+                
+                // Validate password
+                if (!isValidPassword(passwordInput.value)) {
+                    passwordError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    passwordError.style.display = 'none';
+                }
+                
+                // Validate password confirmation
+                if (passwordInput.value !== confirmPasswordInput.value) {
+                    confirmPasswordError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    confirmPasswordError.style.display = 'none';
+                }
+                
+                if (isValid) {
+                    // Simulate registration process
+                    completeRegistration.textContent = 'Processing...';
+                    completeRegistration.disabled = true;
+                    
+                    setTimeout(function() {
+                        // Hide all steps
+                        step3.classList.remove('active');
+                        step3Indicator.classList.remove('active');
+                        step3Indicator.classList.add('completed');
+                        
+                        // Show success message
+                        successMessage.style.display = 'block';
+                    }, 2000);
+                }
+            });
+            
+            // Input formatting and validation
+            phoneInput.addEventListener('input', function() {
+                // Remove non-numeric characters
+                this.value = this.value.replace(/\D/g, '');
+            });
+        });
+    </script>
+</body>
+</html>
