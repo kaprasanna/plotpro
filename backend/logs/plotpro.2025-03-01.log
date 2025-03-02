@@ -1,0 +1,4 @@
+2025-03-01 22:08:58 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-01 22:08:58 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-03-01 22:08:58 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-03-01 22:09:12 [http-nio-8080-exec-6] DEBUG c.p.auth.controller.AuthController - Verifying OTP for mobile: 9886163878 with OTP: 310087
